@@ -74,6 +74,7 @@ app.post("/search", function(req, res){
               // statements_def
               break;
           }
+          break;
         case "HomeOwner":
           switch (formInput[key].value) {
             case "Probable Renter":
@@ -89,6 +90,7 @@ app.post("/search", function(req, res){
               // statements_def
               break;
           }
+          break;
         case "LanguageCode":
           switch (formInput[key].value) {
             case "Arabic":
@@ -147,6 +149,78 @@ app.post("/search", function(req, res){
               break;
             case "Persian":
               searchParams.push({"LanguageCode": "Z"});
+              break;
+            default:
+              // statements_def
+              break;
+          }
+          break;
+        case "Income":
+          switch (formInput[key].value) {
+            case "Under $10K":
+              searchParams.push({"Income": "A"});
+              break;
+            case "$10K-$20K":
+              searchParams.push({"HomeOwner": "B"});
+              break;
+            case "$20K-$30K":
+              searchParams.push({"HomeOwner": "C"});
+              break;
+            case "$30K-$40K":
+              searchParams.push({"HomeOwner": "D"});
+              break;
+            case "$40K-$50K":
+              searchParams.push({"HomeOwner": "E"});
+              break;
+            case "$50K-$60K":
+              searchParams.push({"HomeOwner": "F"});
+              break;
+            case "$70K-$80K":
+              searchParams.push({"HomeOwner": "G"});
+              break;
+            case "$80K-$90K":
+              searchParams.push({"HomeOwner": "H"});
+              break;
+            case "$100K-$150K":
+              searchParams.push({"HomeOwner": "K"});
+              break;
+            case "$150K-$175K":
+              searchParams.push({"HomeOwner": "L"});
+              break;
+            case "$175K-$200K":
+              searchParams.push({"HomeOwner": "M"});
+              break;
+            case "$200K-$250K":
+              searchParams.push({"HomeOwner": "N"});
+              break;
+            case "$250+":
+              searchParams.push({"HomeOwner": "O"});
+              break;
+            default:
+              // statements_def
+              break;
+          }
+          break;
+        case "Diets":
+          switch (formInput[key].value) {
+            case "Diets":
+              searchParams.push({"Diets": true});
+              break;
+            case "Does Not Diet":
+              searchParams.push({"Diets": false});
+              break;
+            default:
+              // statements_def
+              break;
+          }
+          break;
+        case "CasinoGambler":
+          switch (formInput[key].value) {
+            case "Gambles":
+              searchParams.push({"CasinoGambler": true});
+              break;
+            case "Does Not Gamble":
+              searchParams.push({"CasinoGambler": false});
               break;
             default:
               // statements_def

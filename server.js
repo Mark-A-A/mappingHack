@@ -34,18 +34,16 @@ app.get("/api", function(req, res){
 
 app.post("/search", function(req, res){
 
-  // testing-----------------------------
-  var formInput = req.body;
-  debugger;
-  console.log(formInput);
-  console.log(formInput.pos);
+  var formInput = req.body.form;
+  var position = req.body.pos
   var searchParams = [];
+
+  searchParams.push({"Latitude": { $gte: position.south, $lte: position.north }});
+  searchParams.push({"Longitude": { $gte: position.west, $lte: position.east }});
+
   for (var key in formInput) {
     if (formInput.hasOwnProperty(key)) {
       switch (key) {
-        case "pos":
-          console.log(formInput[key]);
-          break;
         case "Age":
           if (formInput[key] !== "Age Group") {
             var rangeLow = formInput[key].slice(0,2);
@@ -65,13 +63,7 @@ app.post("/search", function(req, res){
     }
   }
 
-  if (searchParams.length > 0) {
-    var query = Data.find({ $and: searchParams }).limit(1500);
-  } else {
-    var query = Data.find({}).limit(10000);
-  }
-
-  //  ----------------------------------------
+  var query = Data.find({ $and: searchParams }).limit(1500);
 
   query.exec(function (err, data) {
     if (err) {

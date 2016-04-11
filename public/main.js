@@ -30,7 +30,7 @@ $(document).ready(function() {
     // Use this later for more specifc location searches
     position = {north: map.getBounds().R.j, south: map.getBounds().R.R, east: map.getBounds().j.R, west: map.getBounds().j.j};
 
-    $.post( "/search", formData )
+    $.post( "/search", {form: formData, pos: position})
       .done(function( data ) {
         clearMap();
         populate(data);

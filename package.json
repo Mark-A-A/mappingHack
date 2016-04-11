@@ -1,0 +1,24 @@
+{
+  "name": "mapping-hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "insertData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexg2195/mappingHack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexg2195/mappingHack/issues"
+  },
+  "homepage": "https://github.com/Alexg2195/mappingHack#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12",
+    "morgan": "^1.7.0"
+  }
+}

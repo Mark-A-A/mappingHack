@@ -3,81 +3,57 @@
 var map;
 
 function initMap() {
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.658240, lng: -74.476327},
-    zoom: 8
+    zoom: 12
   });
-
-  // $.get("/api", function(data, status){
-  //   for (var i = data.length - 1; i >= 0; i--) {
-  //     marker = new google.maps.Marker({
-  //       position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
-  //       map: map
-  //     });
-  //   }
-  // });
 
   $.get("/api", function(data, status){
-    var heatmapData = [];
-
-    for (var i = data.length - 1; i >= 0; i--) {
-      heatmapData.push(new google.maps.LatLng(data[i].Latitude, data[i].Longitude));
-    }
-
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatmapData
-    });
-    heatmap.setMap(map);
-
-
-
+    populate(data);
   });
 
+  google.maps.event.addListenerOnce(map, 'idle', function(){
+    console.log("south latitude: " + map.getBounds().R.R);
+    console.log("north latitude: " + map.getBounds().R.j);
+    console.log("east longitude: " + map.getBounds().j.R);
+    console.log("west longitude: " + map.getBounds().j.j);
+  });
 
-// testing -------------------------------------------------------------
+}
 
-/* Data points defined as an array of LatLng objects */
-// var heatmapData = [
-//   new google.maps.LatLng(37.782, -122.447),
-//   new google.maps.LatLng(37.782, -122.445),
-//   new google.maps.LatLng(37.782, -122.443),
-//   new google.maps.LatLng(37.782, -122.441),
-//   new google.maps.LatLng(37.782, -122.439),
-//   new google.maps.LatLng(37.782, -122.437),
-//   new google.maps.LatLng(37.782, -122.435),
-//   new google.maps.LatLng(37.785, -122.447),
-//   new google.maps.LatLng(37.785, -122.445),
-//   new google.maps.LatLng(37.785, -122.443),
-//   new google.maps.LatLng(37.785, -122.441),
-//   new google.maps.LatLng(37.785, -122.439),
-//   new google.maps.LatLng(37.785, -122.437),
-//   new google.maps.LatLng(37.785, -122.435)
-// ];
+$(document).ready(function() {
 
-// var sanFrancisco = new google.maps.LatLng(37.774546, -122.433523);
+  $("#newSearch").submit(function(event) {
+    console.log( $(this).serializeArray() );
 
-// map = new google.maps.Map(document.getElementById('map'), {
-//   center: sanFrancisco,
-//   zoom: 13,
-//   mapTypeId: google.maps.MapTypeId.SATELLITE
-// });
+    $.post( "/search", $(this).serializeArray() )
+      .done(function( data ) {
+        clearMap();
+        populate(data);
+      });
+    event.preventDefault();
+  });
 
-// var heatmap = new google.maps.visualization.HeatmapLayer({
-//   data: heatmapData
-// });
-// heatmap.setMap(map);
+});
 
+var heatmap;
 
-// -------------------------------------------------------------
+function populate (data) {
+  var heatmapData = [];
+  for (var i = data.length - 1; i >= 0; i--) {
+    heatmapData.push(new google.maps.LatLng(data[i].Latitude, data[i].Longitude));
+  }
 
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: heatmapData
+  });
 
+  heatmap.setMap(map);
+  heatmap.set('radius', 22);
+}
 
-
-
-
-
-
-
-
-
+function clearMap () {
+  heatmap.setMap(null);
+  heatmap.getData().j = [];
 }

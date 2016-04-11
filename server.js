@@ -234,7 +234,7 @@ app.post("/search", function(req, res){
     }
   }
 
-  var query = Data.find({ $and: searchParams }).limit(20000);
+  var query = Data.find({ $and: searchParams }).limit(100000);
   console.log(searchParams);
   query.exec(function (err, data) {
     if (err) {

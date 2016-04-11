@@ -13,21 +13,24 @@ function initMap() {
     populate(data);
   });
 
-  google.maps.event.addListenerOnce(map, 'idle', function(){
-    console.log("south latitude: " + map.getBounds().R.R);
-    console.log("north latitude: " + map.getBounds().R.j);
-    console.log("east longitude: " + map.getBounds().j.R);
-    console.log("west longitude: " + map.getBounds().j.j);
-  });
+  // google.maps.event.addListenerOnce(map, 'idle', function(){
+  //   console.log("south latitude: " + map.getBounds().R.R);
+  //   console.log("north latitude: " + map.getBounds().R.j);
+  //   console.log("east longitude: " + map.getBounds().j.R);
+  //   console.log("west longitude: " + map.getBounds().j.j);
+  // });
 
 }
 
 $(document).ready(function() {
 
   $("#newSearch").submit(function(event) {
-    console.log( $(this).serializeArray() );
+    var formData = $(this).serializeArray();
 
-    $.post( "/search", $(this).serializeArray() )
+    // Use this later for more specifc location searches
+    position = {north: map.getBounds().R.j, south: map.getBounds().R.R, east: map.getBounds().j.R, west: map.getBounds().j.j};
+
+    $.post( "/search", formData )
       .done(function( data ) {
         clearMap();
         populate(data);

@@ -43,8 +43,6 @@ app.post("/search", function(req, res){
 
   for (var key in formInput) {
     if (formInput.hasOwnProperty(key)) {
-      console.log("adding the following key to search params: " + key);
-      console.log(formInput[key]);
       switch (formInput[key].name) {
         case "Age":
           if (formInput[key].value !== "Age Group") {
@@ -76,6 +74,84 @@ app.post("/search", function(req, res){
               // statements_def
               break;
           }
+        case "HomeOwner":
+          switch (formInput[key].value) {
+            case "Probable Renter":
+              searchParams.push({"HomeOwner": "P"});
+              break;
+            case "Renter":
+              searchParams.push({"HomeOwner": "R"});
+              break;
+            case "Home Owner":
+              searchParams.push({"HomeOwner": "Y"});
+              break;
+            default:
+              // statements_def
+              break;
+          }
+        case "LanguageCode":
+          switch (formInput[key].value) {
+            case "Arabic":
+              searchParams.push({"LanguageCode": "A"});
+              break;
+            case "Chinese":
+              searchParams.push({"LanguageCode": "C"});
+              break;
+            case "Pashtu":
+              searchParams.push({"LanguageCode": "D"});
+              break;
+            case "French":
+              searchParams.push({"LanguageCode": "F"});
+              break;
+            case "Greek":
+              searchParams.push({"LanguageCode": "G"});
+              break;
+            case "Hindu":
+              searchParams.push({"LanguageCode": "H"});
+              break;
+            case "Italian":
+              searchParams.push({"LanguageCode": "I"});
+              break;
+            case "Japanese":
+              searchParams.push({"LanguageCode": "J"});
+              break;
+            case "Korean":
+              searchParams.push({"LanguageCode": "K"});
+              break;
+            case "German":
+              searchParams.push({"LanguageCode": "N"});
+              break;
+            case "Polish":
+              searchParams.push({"LanguageCode": "P"});
+              break;
+            case "Russian":
+              searchParams.push({"LanguageCode": "R"});
+              break;
+            case "Polish":
+              searchParams.push({"LanguageCode": "P"});
+              break;
+            case "Spanish":
+              searchParams.push({"LanguageCode": "S"});
+              break;
+            case "Thai":
+              searchParams.push({"LanguageCode": "T"});
+              break;
+            case "Portuguese":
+              searchParams.push({"LanguageCode": "U"});
+              break;
+            case "Vietnamese":
+              searchParams.push({"LanguageCode": "V"});
+              break;
+            case "Hebrew":
+              searchParams.push({"LanguageCode": "W"});
+              break;
+            case "Persian":
+              searchParams.push({"LanguageCode": "Z"});
+              break;
+            default:
+              // statements_def
+              break;
+          }
           break;
         default:
           // statements_def
@@ -85,7 +161,6 @@ app.post("/search", function(req, res){
   }
 
   var query = Data.find({ $and: searchParams }).limit(20000);
-  console.log("Search params are %s", searchParams);
   console.log(searchParams);
   query.exec(function (err, data) {
     if (err) {

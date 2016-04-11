@@ -9,7 +9,7 @@ var db = mongoose.connection;
 
 var personData = require(__dirname + '/models/dataPt.js');
 
-var pathToData = 'C:/Users/Alexg2195/Desktop/HackathonV12/data/NY/';
+var pathToData = 'C:/Users/Alexg2195/Desktop/HackathonV12/data/NJ/';
 
 MaxFileSize = 268435440; // In Bytes
 

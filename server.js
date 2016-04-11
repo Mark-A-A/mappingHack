@@ -161,40 +161,40 @@ app.post("/search", function(req, res){
               searchParams.push({"Income": "A"});
               break;
             case "$10K-$20K":
-              searchParams.push({"HomeOwner": "B"});
+              searchParams.push({"Income": "B"});
               break;
             case "$20K-$30K":
-              searchParams.push({"HomeOwner": "C"});
+              searchParams.push({"Income": "C"});
               break;
             case "$30K-$40K":
-              searchParams.push({"HomeOwner": "D"});
+              searchParams.push({"Income": "D"});
               break;
             case "$40K-$50K":
-              searchParams.push({"HomeOwner": "E"});
+              searchParams.push({"Income": "E"});
               break;
             case "$50K-$60K":
-              searchParams.push({"HomeOwner": "F"});
+              searchParams.push({"Income": "F"});
               break;
             case "$70K-$80K":
-              searchParams.push({"HomeOwner": "G"});
+              searchParams.push({"Income": "G"});
               break;
             case "$80K-$90K":
-              searchParams.push({"HomeOwner": "H"});
+              searchParams.push({"Income": "H"});
               break;
             case "$100K-$150K":
-              searchParams.push({"HomeOwner": "K"});
+              searchParams.push({"Income": "K"});
               break;
             case "$150K-$175K":
-              searchParams.push({"HomeOwner": "L"});
+              searchParams.push({"Income": "L"});
               break;
             case "$175K-$200K":
-              searchParams.push({"HomeOwner": "M"});
+              searchParams.push({"Income": "M"});
               break;
             case "$200K-$250K":
-              searchParams.push({"HomeOwner": "N"});
+              searchParams.push({"Income": "N"});
               break;
             case "$250+":
-              searchParams.push({"HomeOwner": "O"});
+              searchParams.push({"Income": "O"});
               break;
             default:
               // statements_def

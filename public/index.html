@@ -17,6 +17,13 @@
 
           <form role="form" id="newSearch">
             <div class="form-group">
+              <select class="form-control" name="Gender">
+                <option>Gender</option>
+                <option>M</option>
+                <option>F</option>
+              </select>
+            </div>
+            <div class="form-group">
               <select class="form-control" name="Age">
                 <option>Age Group</option>
                 <option>12-17</option>
@@ -28,11 +35,14 @@
                 <option>65+</option>
               </select>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" name="Gender" value="M">Male</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" name="Gender" value="F">Female</label>
+            <div class="form-group">
+              <select class="form-control" name="EducationLevel">
+                <option>Education</option>
+                <option>High School</option>
+                <option>Some College</option>
+                <option>Completed College</option>
+                <option>Graduate School</option>
+              </select>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
           </form>

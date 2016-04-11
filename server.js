@@ -13,6 +13,7 @@ app.use("/", express.static("public"));
 
 
 // Note separated out just yet for testing-----------------------------------------------------------
+
 var mongoose = require('mongoose');
 var Data = require(__dirname + '/models/dataPt.js');
 
@@ -32,10 +33,36 @@ app.get("/api", function(req, res){
 });
 
 app.post("/search", function(req, res){
-  console.log(req.body);
-  var formInput = req.body;
 
-  var query = Data.find(req.body).limit(1500);
+  // testing-----------------------------
+  var formInput = req.body;
+  var searchParams = [];
+  for (var key in formInput) {
+    if (formInput.hasOwnProperty(key)) {
+      switch (key) {
+        case "Gender":
+          if (formInput[key] === "M" || formInput[key] === "F") {
+            console.log("adding gender filter");
+            searchParams.push({"Gender": formInput[key]});
+          }
+          break;
+        default:
+          // statements_def
+          break;
+      }
+      console.log(key + " -> " + formInput[key]);
+    }
+  }
+
+  if (searchParams.length > 0) {
+    var query = Data.find({ $and: searchParams }).limit(1500);
+  } else {
+    var query = Data.find({}).limit(5000);
+  }
+
+  //  ----------------------------------------
+
+  // var query = Data.find(req.body).limit(1500);
 
   query.exec(function (err, data) {
     if (err) {

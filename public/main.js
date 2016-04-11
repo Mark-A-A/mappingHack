@@ -3,20 +3,23 @@
 var map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 40.658240, lng: -74.476327},
-    zoom: 8
-  });
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: 40.658240, lng: -74.476327},
+//     zoom: 8
+//   });
 
-  $.get("/api", function(data, status){
-    for (var i = data.length - 1; i >= 0; i--) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
-        map: map
-      });
-    }
-  });
+//   $.get("/api", function(data, status){
+//     for (var i = data.length - 1; i >= 0; i--) {
+//       marker = new google.maps.Marker({
+//         position: new google.maps.LatLng(data[i].Latitude, data[i].Longitude),
+//         map: map
+//       });
+//     }
+//   });
 
+
+
+// testing -------------------------------------------------------------
 
 /* Data points defined as an array of LatLng objects */
 var heatmapData = [
@@ -36,6 +39,13 @@ var heatmapData = [
   new google.maps.LatLng(37.785, -122.435)
 ];
 
+var sanFrancisco = new google.maps.LatLng(37.774546, -122.433523);
+
+map = new google.maps.Map(document.getElementById('map'), {
+  center: sanFrancisco,
+  zoom: 13,
+  mapTypeId: google.maps.MapTypeId.SATELLITE
+});
 
 var heatmap = new google.maps.visualization.HeatmapLayer({
   data: heatmapData
@@ -43,13 +53,22 @@ var heatmap = new google.maps.visualization.HeatmapLayer({
 heatmap.setMap(map);
 
 
+// -------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
 }
 
-  // marker = new google.maps.Marker({
-  //   position: new google.maps.LatLng(40.658240, -74.476327),
-  //   map: map
-  // });
+
+
+
+
 

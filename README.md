@@ -8,9 +8,9 @@ NOTE: Currently their is no online data to use this application with possibly in
 
 ## Technology Used
 
-MongoDB
-Express
-Bootstrap
+* MongoDB
+* Express
+* Bootstrap
 
 #### Below is a screen shot of the polish demographic in an area of New Jersey
 
